@@ -17,11 +17,31 @@
                     </x-nav-link>
                 </div>
 
+                {{-- profile --}}
+                @if(Auth::user()->hasRole('student'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.myprofile')" :active="request()->routeIs('dashboard.myprofile')">
                         {{ __('My Profile') }}
                     </x-nav-link>
                 </div>
+                @endif
+
+                {{-- create room --}}
+                @if(Auth::user()->hasRole('instructor'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.createroom')" :active="request()->routeIs('dashboard.createroom')">
+                        {{ __('Create Room') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                {{-- @if(Auth::user()->hasRole('student'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.joinroom')" :active="request()->routeIs('dashboard.joinroom')">
+                        {{ __('Join Room') }}
+                    </x-nav-link>
+                </div> --}}
+                {{-- @endif --}}
             </div>
 
             <!-- Settings Dropdown -->

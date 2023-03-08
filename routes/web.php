@@ -32,6 +32,15 @@ Route::group(['middleware' => ['auth','role:student']], function() {
     Route::get('dashboard/myprofile', 'App\Http\Controllers\DashboardController@myprofile')->name('dashboard.myprofile');
 });
 
+Route::group(['middleware' => ['auth','role:instructor']], function(){
+    Route::get('dashboard/createroom', 'App\Http\Controllers\DashboardController@createroom')->name('dashboard.createroom');
+});
+
+Route::get('dashboard/joinroom/{id}', 'App\Http\Controllers\DashboardController@joinroom')->name('dashboard.joinroom');
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
